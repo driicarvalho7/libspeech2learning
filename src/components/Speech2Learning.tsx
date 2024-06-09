@@ -1,50 +1,51 @@
-import { useState } from "react";
+import { useState } from 'react'
+import './Speech2Learning.css'
 
 interface Speech2LearningProps {
-  videoUrl: string;
-  title: string;
-  transcriptions: string;
-  subtitles: string;
+  videoUrl: string
+  title: string
+  transcriptions: string
+  subtitles: string
 }
 
 function Speech2Learning({
   videoUrl,
   title,
   transcriptions,
-  subtitles,
+  subtitles
 }: Speech2LearningProps) {
-  const [contrast, setContrast] = useState(false);
-  const [subtitles1, setSubtitles] = useState(false);
+  const [contrast, setContrast] = useState(false)
+  const [subtitles1, setSubtitles] = useState(false)
 
   const toggleContrast = () => {
-    setContrast(!contrast);
+    setContrast(!contrast)
     const elementsWithDarkClass = document.querySelectorAll(
-      "body, .aside, .bottom, .toggle-theme"
-    );
+      'body, .aside, .bottom, .toggle-theme'
+    )
 
     elementsWithDarkClass.forEach((element) => {
-      element.classList.toggle("dark");
-    });
-  };
+      element.classList.toggle('dark')
+    })
+  }
 
   const toggleSubtitles = () => {
-    setSubtitles(!subtitles1);
-  };
+    setSubtitles(!subtitles1)
+  }
 
   return (
     <>
       <div className="col-12">
         <button
           className="border-btn toggle-theme"
-          onClick={() => toggleContrast()}
+          onClick={() => { toggleContrast() }}
         >
-          {contrast ? "Normal" : "Contraste"}
+          {contrast ? 'Normal' : 'Contraste'}
         </button>
       </div>
 
       <div className="container col-12">
         <div
-          className={`left col-7 col-s-8 ${subtitles1 ? "subtitles" : ""}`}
+          className={`left col-7 col-s-8 ${subtitles1 ? 'subtitles' : ''}`}
           style={{ zIndex: 9999 }}
         >
           <video id="video" controls preload="metadata" src={videoUrl}></video>
@@ -60,20 +61,20 @@ function Speech2Learning({
           <div className="carousel-controllers"></div>
           <div className="aside">
             <div className="text-area">
-              <p id="resume-text">{subtitles1 ? "" : transcriptions}</p>
+              <p id="resume-text">{subtitles1 ? '' : transcriptions}</p>
             </div>
             <button
               className="border-btn ocultar-resumo"
               id="btn-show-resume"
-              onClick={() => toggleSubtitles()}
+              onClick={() => { toggleSubtitles() }}
             >
-              {subtitles1 ? "Mostrar transcrição" : "Ocultar transcrição"}
+              {subtitles1 ? 'Mostrar transcrição' : 'Ocultar transcrição'}
             </button>
           </div>
         </div>
       </div>
     </>
-  );
+  )
 }
 
-export default Speech2Learning;
+export default Speech2Learning
